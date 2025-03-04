@@ -628,6 +628,8 @@ def entertainment_account():
             entertain_user.region = update_acc.region.data
             entertain_user.coordinates = update_acc.coordinates.data
             entertain_user.payment_options = update_acc.payment_options.data
+            entertain_user.email = "equinox@example.com"
+
 
             db.session.commit()
             flash(f"Update Successful!", "success")
@@ -1051,10 +1053,10 @@ def orders():
 @login_required
 def menu_form_edit():
 
-    no_of_menu_itms=len(Menu_Items.query.filter_by(cid=current_user.id).all())
+    # no_of_menu_itms=len(Menu_Items.query.filter_by(cid=current_user.id).all())
     menu_item = Menu_Items.query.filter_by(cid=current_user.id,id=ser.loads(request.args.get("mid"))['data']).first()
     item_edit_form = MenuItemForm()
-    images = Menus_Images.query.filter_by(token = menu_item.token).first()
+    # images = Menus_Images.query.filter_by(token = menu_item.token).first()
 
     if request.method == "POST":
 
@@ -1071,21 +1073,21 @@ def menu_form_edit():
             remove_path(menu_item.main_img,"static/uploads")
             menu_item.main_img=process_file(item_edit_form.main_img.data)
 
-        if len(request.files.getlist("images")) > 1:
-            print("IMAGES DEBUG: ", len(request.files.getlist("images")))
-            if images.img_1:
-                delete_img(images.img_1,images.token)
-            if images.img_2:
-                delete_img(images.img_2,images.token)
-            for i, img_str in enumerate(menu_pictures(request.files.getlist("images"))):
-                if i == 0:
-                    images.img_1 = img_str
-                elif i == 1:
-                    images.img_2 = img_str
+        # if len(request.files.getlist("images")) > 1:
+        #     print("IMAGES DEBUG: ", len(request.files.getlist("images")))
+        #     if images.img_1:
+        #         delete_img(images.img_1,images.token)
+        #     if images.img_2:
+        #         delete_img(images.img_2,images.token)
+        #     for i, img_str in enumerate(menu_pictures(request.files.getlist("images"))):
+        #         if i == 0:
+        #             images.img_1 = img_str
+        #         elif i == 1:
+        #             images.img_2 = img_str
 
         db.session.commit()
 
-    return render_template("item_edit_form.html", item_edit_form=item_edit_form,no_of_menu_itms=no_of_menu_itms,menu_item=menu_item,images=images)
+    return render_template("item_edit_form.html", item_edit_form=item_edit_form,no_of_menu_itms=no_of_menu_itms,menu_item=menu_item,images=None)
 
 
 @app.route('/places', methods=["POST","GET"])
