@@ -1053,7 +1053,7 @@ def orders():
 @login_required
 def menu_form_edit():
 
-    # no_of_menu_itms=len(Menu_Items.query.filter_by(cid=current_user.id).all())
+    no_of_menu_itms=len(Menu_Items.query.filter_by(cid=current_user.id).all())
     menu_item = Menu_Items.query.filter_by(cid=current_user.id,id=ser.loads(request.args.get("mid"))['data']).first()
     item_edit_form = MenuItemForm()
     # images = Menus_Images.query.filter_by(token = menu_item.token).first()
