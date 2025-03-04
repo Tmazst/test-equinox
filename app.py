@@ -1059,13 +1059,14 @@ def menu_form_edit():
     # images = Menus_Images.query.filter_by(token = menu_item.token).first()
 
     if request.method == "POST":
-
+        
         menu_item.item_name = item_edit_form.item_name.data
         menu_item.item_caption = item_edit_form.item_caption.data
         menu_item.item_description = request.form.get("item_description")
         menu_item.item_ingredients = item_edit_form.item_ingredients.data
         menu_item.item_food_group = item_edit_form.item_food_group.data
         menu_item.item_price = item_edit_form.item_price.data
+        print("Update Legs: ",request.form.get("item_description"))
 
         # images = Menus_Images.query.filter_by(token = menu_item.token).first()
 
@@ -1086,6 +1087,10 @@ def menu_form_edit():
         #             images.img_2 = img_str
 
         db.session.commit()
+        flash("Update Successful","success")
+    # else:
+    #     for error in item_edit_form.errors:
+    #         print("Error: ",error)
 
     return render_template("item_edit_form.html", item_edit_form=item_edit_form,no_of_menu_itms=no_of_menu_itms,menu_item=menu_item,images=None)
 
