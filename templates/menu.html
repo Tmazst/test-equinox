@@ -81,12 +81,12 @@
                 {%endif%}
                 
                 <div style="display:flex;gap:5px">
-                    {% if current_user.is_authenticated and current_user.id == item.cid %}
+                    {% if current_user.is_authenticated %}
                         <a class="edit_btn" href="/menu_item_edit?mid={{ser.dumps({'data':item.id})}}">Edit</a>
                         <a class="edit_btn svg-hrefs" href="/menu_item_edit?mid={{ser.dumps({'data':item.id})}}"><object style="height:18px" type="image/svg+xml" data="static/icons/delete-icon.svg" ></object></a>
                     {% endif %}
                 </div><br><br>
-                {% if current_user.is_authenticated and current_user.id == item.cid %}
+                {% if current_user.is_authenticated %}
                 <div style="width:auto;margin:10px auto">
                     <div id="register"  style="" class="user-icns"><a style="color:white !important" class="btns-user links-user" href="/menu_item_form">+Add Menu</a></div>
                 </div>
