@@ -1062,7 +1062,7 @@ def menu_form_edit():
 
         menu_item.item_name = item_edit_form.item_name.data
         menu_item.item_caption = item_edit_form.item_caption.data
-        menu_item.item_description = item_edit_form.item_description.data
+        menu_item.item_description = request.form.get("item_description")
         menu_item.item_ingredients = item_edit_form.item_ingredients.data
         menu_item.item_food_group = item_edit_form.item_food_group.data
         menu_item.item_price = item_edit_form.item_price.data
