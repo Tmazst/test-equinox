@@ -343,8 +343,6 @@ class Contacts:
     contact = None
 
 
-
-
 @app.route('/', methods=["POST","GET"])
 def home():
 

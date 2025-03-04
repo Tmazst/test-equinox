@@ -21,6 +21,49 @@
             <!-- <div class="slide"><img style="width: 100%;" src="static/images/pexels-minan1398-1482803.jpg"/></div> -->
         </div>
     </div>
+
+    <div style id="nav-div" class="nav-div gen-flex">
+
+        <div onclick="sideNavFunc(event)" class="menu-btn gen-flex-col">
+            <div class="stroke"></div>
+            <div class="stroke"></div>
+            <div class="stroke"></div>
+        </div>
+
+        <div  id="nav-div-cont" class="new-cls-nav">
+            <ul class="navbar-nav">
+              <li class="nav-item-main">
+                <a class="nav-link" href="/menu">Menu</a>
+              </li>
+              <li style="position:relative" class="nav-item-main">
+                <a class="nav-link" href="/menu-list">Order</a>
+              </li>
+              <li style="position:relative" class="nav-item-main">
+                <a class="nav-link" href="#">Specials</a>
+              </li>
+            </ul>
+        </div>
+
+        <div class="filler"></div>
+
+        <div class="user">
+            <ul class="navbar-nav-user  gen-flex">
+            {% if current_user.is_authenticated %}
+                {% if current_user.role == 'company_user' %}
+                    <li><a class="nav-link btns user-btns" href="#">Account</a></li>
+                {%else%}
+                    <li><a  class="nav-link btns user-btns" href="#">My Account</a></li>
+                {%endif%}
+                    <li><a class="nav-link btns user-btns" href="/logout">Logout</a></li>
+            {% else %}
+                <li><a class="nav-link btns" href="login">Login</a></li>
+                <li><a class="nav-link btns user-btns" href="/vac_signup">Register</a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+
+
     {%if Slider%}
     <div class="slider-cont-phone gen-flex"> 
       
@@ -34,8 +77,13 @@
         <div id="side-navig-cont" class="side-nav-cont move-to-appear gen-flex-col">
           
             <div style="padding-top:25px"  class="gen-flex-col cat-item-cont">
-              <img style="height:80px" src="static/images/logo_black_outl.png" />
-              <a href="#"> <div class="cat-item"><span>Menu</span></div></a>
+              <img style="height:80px" src="static/icons/bw.png" />
+              <a href="/"> <div class="cat-item"><span>Home</span></div></a>
+              <a href="/menu"> <div class="cat-item"><span>Menu</span></div></a>
+              <a href="/menu-list"><div class="cat-item"><span>Order</span></div></a>
+              <a href="#"> <div class="cat-item"><span>Order History</span></div></a>
+              <a href="#"> <div class="cat-item"><span>Specials</span></div></a>
+              <a href="#"> <div class="cat-item"><span>About</span></div></a>
               {%for category in categories%}
               {% set num_images = images | selectattr('image_category', 'equalto', category) | list | length %}
                 
@@ -104,13 +152,17 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body><br>
+</body>
+<br>
 <footer class="gen-flex-col">
     <div class="line"></div>
     <div style="color:rgb(97, 87, 73);font-size:16px">Equinox Restaurant and Bar</div>
     <div style="color:rgb(49, 47, 42) !important;font-size:12px">Old LaCaserole, Gwamile Street Mbabane Eswatini</div>
-
     <div>
+        <ul class="gen-flex footer-links">
+            <a href="/vac_signup"><li>Sign Up</li></a>
+            <a href="/login"><li>Log In</li></a>
+        </ul>
         <ul class="gen-flex footer-links">
             <a href="/"><li>Home</li></a>
             <a href="/"><li>Points & Rewards</li></a>
@@ -121,6 +173,7 @@
             <a href="/menu"><li>My Orders History</li></a>
             <a href="/menu"><li>About</li></a>
         </ul>
+
     </div>
     <div>
 

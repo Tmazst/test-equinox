@@ -210,7 +210,7 @@ body{font-family: 'Montserrat' !important;}
 }
 
 .navbar-nav{
-    width:70% !important;
+    min-width:max-content !important;
     display:flex;
     justify-content:space-around;
     align-items: center;
@@ -979,7 +979,7 @@ body{
     padding:30px;
     /* background: rgba(100,82,182,0.8)  !important; */
     /* box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.5); */
-    border:1px solid #d9d2f0;
+    border:1px solid var(--main-color);
     border-radius: 20px;
     /* border-bottom-left-radius: 50px; */
     position: relative;
@@ -1436,7 +1436,7 @@ section{
 
 .user a{
     font-weight: 600 !important;
-    color:#280291 !important;
+    color:var(--main-color) !important;
 }
 
 .user{
@@ -1449,6 +1449,28 @@ section{
     /* background-color:; */
     
     /* width: 100%; */
+}
+
+.nav-div{
+    background: rgba(31, 31, 31,0.4);
+    position: sticky;
+    top:0;
+    z-index: 1500;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+}
+
+.sticky-blur{
+    background: rgba(31, 31, 31,0.4) !important;
+    backdrop-filter: blur(3px);
+}
+
+.user{
+    background: none;
+}
+
+.navbar-nav-user{
+    padding-right: 10px;
 }
 
 #nav-div-cont{
@@ -1466,7 +1488,7 @@ section{
     backdrop-filter: blur(10px); */
     background:none;
     height:inherit;
-    flex-grow:1;
+    flex-wrap: nowrap !important;
 }
 
 * {
@@ -1482,12 +1504,13 @@ section{
     height:60px; */
     /* background-color:rgb(255, 0, 128);
     height:70px !important; */
+    color:var(--main-color) !important;
 }
 
 .navbar-nav a{
    text-decoration: none;
    text-wrap: nowrap;
-   color:black;
+   color:var(--main-color);
    font-weight: 600;
    /* background-color:blue; */
 }
@@ -1779,19 +1802,39 @@ prf-image{
     /* background-color: #faf9f9; */
 }
 
-/* .btns:hover{
-    background-color: var(--main-color);
-    color:white;
-    padding:7px 15px;
-    border-radius: 15px;
-    background: none;
-} */
+.user-label{
+    display:flex;
+    list-style-type:none;
+    gap:5px;
+}
+
+
+
 
 .btns{
     color:var(--main-color);
     border-radius: 10px;
     padding:4px 15px;
     border:1px solid var(--main-color);
+}
+
+.nav-link{
+    transition: all 0.4s ease;
+    text-decoration: none !important;
+    color:var(--main-color);
+}
+
+.navbar-nav-user a{
+    text-decoration: none !important;
+}
+
+.navbar-nav-user li{
+    list-style-type: none;
+}
+
+.nav-link:hover{
+    /* letter-spacing: 4px; */
+    color:var(--main2-color)
 }
 
 .order-btns{
@@ -2340,10 +2383,11 @@ prf-image{
     z-index:1600;
     left:0;
     right:0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(19, 19, 19, 0.5);
+    backdrop-filter: blur(3px);
 }
 
-.filler{flex-grow:1}
+.filler{flex-grow:1 !important}
 
 .side-nav-cont span, div,a{
     color:rgb(63, 62, 62);
@@ -2586,14 +2630,21 @@ img:hover {opacity: 0.7;}
 }
 
 
-@media only screen and (max-width: 700px){
+/* @media only screen and (max-width: 700px){
     .modal-content {
         width: 100%;
     }
-}
+    #nav-div-cont{
+        display: none;
+    }
+} */
 
 
-@media all and (max-width: 756px) {  
+@media all and (max-width: 756px) { 
+
+#nav-div-cont{
+        display: none !important;
+    }
 
 .slider-cont{
     display: none;
@@ -3418,7 +3469,7 @@ img:hover{
 
 .user a{
     font-weight: 600 !important;
-    color:#280291 !important;
+    color:var(--main-color) !important;
 }
 
 .user{
@@ -3431,6 +3482,37 @@ img:hover{
     right: 50px; */
     /* background-color:red; */
     /* width: 100%; */
+}
+
+.menu-btn{
+    width:60px;
+    height: 50px;
+    align-items: flex-start;
+    gap:7px;
+    padding-left: 5px;
+}
+
+.stroke:nth-child(1){
+    border-radius:10px;
+    height:4px;
+    width:20px;
+    background-color:var(--main-color);
+}
+.stroke:nth-child(2){
+    border-radius:10px;
+    height:4px;
+    width:30px;
+    background-color:var(--main-color);
+}
+.stroke:nth-child(3){
+    border-radius:10px;
+    height:4px;
+    width:40px;
+    background-color:var(--main-color);
+}
+
+.stroke:hover{
+    background-color:#707070
 }
 
 #nav-div-cont{
@@ -3463,6 +3545,7 @@ img:hover{
     justify-content:flex-start;
     align-items: center;
     gap:10px;
+    flex-wrap: nowrap;
     /* background:none !important; */
     /* background-color:rgb(223, 103, 6); */
     /*height:70px !important; */
@@ -3473,12 +3556,13 @@ img:hover{
     height:60px; */
     /* background-color:rgb(255, 0, 128);
     height:70px !important; */
+    color:black !important;
 }
 
 .navbar-nav a{
    text-decoration: none;
    text-wrap: nowrap;
-   color:black;
+   color:var(--main-color);
    font-weight: 600;
    /* background-color:blue; */
 }
