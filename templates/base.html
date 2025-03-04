@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="static/src/css/styles_cbs.css" />
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+    <title>{{title}}</title>
+
+
+    <div class="container">
+        <div class="slider-cont gen-flex">  
+            
+            
+            <img style="transform: scale(1);" src="static/icons/eq_png_shadow.png" id="app_logo" class="logo-main" />
+            
+            <div class="slide-image"><img style="width: 100%;" src="static/images/banner_bg.jpg"/></div>
+            <!-- <div class="slide"><img style="height: ;margin-top:0px" src="static/images/pexels-chevanon-323682.jpg"/></div> -->
+            <!-- <div class="slide"><img style="width: 100%;" src="static/images/pexels-minan1398-1482803.jpg"/></div> -->
+        </div>
+    </div>
+    {%if Slider%}
+    <div class="slider-cont-phone gen-flex"> 
+      
+            <div><img style="height:150px;" src="static/icons/eq_png_shadow.png" id="app_logo" /></div>
+
+        <div class="slide-image"><img style="width: 100%;" src="static/images/banner_bg.jpg"/></div>
+    </div>
+    {%endif%}
+
+    <div onclick="closeSideNavFunc()"  id="side-navig-bg" class="side-nav-bg gen-flex-col">
+        <div id="side-navig-cont" class="side-nav-cont move-to-appear gen-flex-col">
+          
+            <div style="padding-top:25px"  class="gen-flex-col cat-item-cont">
+              <img style="height:80px" src="static/images/logo_black_outl.png" />
+              <a href="#"> <div class="cat-item"><span>Menu</span></div></a>
+              {%for category in categories%}
+              {% set num_images = images | selectattr('image_category', 'equalto', category) | list | length %}
+                
+                  <a href="/?cat={{category}}"> <div class="cat-item"><span>{{category}}</span>{%if num_images > 0%}<small class="num gen-flex">{{num_images}}</small>{%endif%}</div></a>
+              {%endfor%}
+            </div>
+            <div class="filler"></div>
+          <div class="gen-flex-col lower-nav">
+              <a href="#" download><div class="gen-flex"><img style="height:30px" src="static/icons/android-icon.png" /><span class="labels">Install App</span></div></a>
+              <a href="#"><div class="gen-flex"><img style="height:30px" src="static/icons/about-icon.png" /><span class="labels">About</span></div></a> 
+          </div>
+        </div>
+        
+      </div>
+
+    
+</head>
+
+
+<body><br>
+    <div class="container">
+            {% if menu_banner %}
+
+            {% endif %}
+
+            {% if not page_info %}
+            {%if Slider%}
+            <div style="z-index:400;background-color:black;" id="welcome-design">
+                <div style="background-color:black;"  class="slider-container">
+                    <div class="slider">
+                        {% for image in slider_images%}
+                            <img src="{{image}}" alt="Food Special 1">
+                        {%endfor%}
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+            {% endif %}
+
+            <div class="content-cont">
+
+                <div class="left-section">
+                    <div class="menu-ad-link">
+                        <!-- <img style="height: 70px;" src="static/icons/menu-icon-s.png" />
+                        <div>Dive into a world of flavors with our curated menus featuring your favorite cuisines from dream destinations. Click now to begin your taste adventure!</div>
+                        <div> Place your order online! </div> -->
+                    </div>
+                </div>
+
+                <div class="content-center" style="">
+                {% block content %}
+                
+                {% block home_content %}
+                {% endblock %}
+                
+    
+                {%endblock%}
+                </div>
+
+            <div class="right-section">
+            </div>
+    </div>
+
+    <script src="static/src/js/js_script.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body><br>
+<footer class="gen-flex-col">
+    <div class="line"></div>
+    <div style="color:rgb(97, 87, 73);font-size:16px">Equinox Restaurant and Bar</div>
+    <div style="color:rgb(49, 47, 42) !important;font-size:12px">Old LaCaserole, Gwamile Street Mbabane Eswatini</div>
+
+    <div>
+        <ul class="gen-flex footer-links">
+            <a href="/"><li>Home</li></a>
+            <a href="/"><li>Points & Rewards</li></a>
+            <a href="/"><li>Specials</li></a>
+        </ul>
+        <ul class="gen-flex footer-links">
+            <a href="/menu"><li>Menu</li></a>
+            <a href="/menu"><li>My Orders History</li></a>
+            <a href="/menu"><li>About</li></a>
+        </ul>
+    </div>
+    <div>
+
+    </div>
+</footer>
+</html>
