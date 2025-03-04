@@ -84,7 +84,7 @@
                     <!------- Item Description --------->
                     <div style="background-color: f8f95a;" class="job-ad-group marginise-bottom">
                         {{ item_edit_form.item_description.label(class="labels") }}
-                        <textarea class="form-control adj-width-60" value="">{{menu_item.item_description}}</textarea>
+                        <textarea class="form-control adj-width-60" value="" name="item_description">{{menu_item.item_description}}</textarea>
                         {% if item_edit_form.item_description.errors %}
                             {% for error in item_edit_form.item_description.errors %}
                                 <span class="span-error" >*{{error}}</span>
